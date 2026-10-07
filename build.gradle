@@ -23,7 +23,7 @@ repositories {
 }
 
 base {
-    archivesName = mod_id
+    archivesName = 'xtones'
 }
 
 // Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
@@ -31,6 +31,15 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 //minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
 //minecraft.accessTransformers.entry public net.minecraft.client.Minecraft textureManager # textureManager
+
+sourceSets {
+    gameTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+configurations.gameTestImplementation.extendsFrom(configurations.implementation)
+configurations.gameTestRuntimeOnly.extendsFrom(configurations.runtimeOnly)
 
 // Default run configurations.
 // These can be tweaked, removed, or duplicated as needed.
@@ -66,7 +75,9 @@ runs {
     // By default, the server will crash when no gametests are provided.
     // The gametest system is also enabled by default for other run configs under the /test command.
     gameTestServer {
-        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        modSource project.sourceSets.gameTest
+        // NeoForge filters by the template namespace; this test uses a bundled vanilla template.
+        systemProperty 'neoforge.enabledGameTestNamespaces', 'minecraft'
     }
 
     data {
@@ -180,4 +191,8 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+tasks.named('jar', Jar).configure {
+    from('LICENSE')
 }

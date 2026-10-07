@@ -62,6 +62,7 @@ import net.tobsend.xtonesreworked.block.ZorgBlocks;
 import net.tobsend.xtonesreworked.block.ZtylBlocks;
 import net.tobsend.xtonesreworked.block.ZythBlocks;
 import net.tobsend.xtonesreworked.item.ModItems;
+import net.tobsend.xtonesreworked.scroll.ScrollPayload;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(XtonesReworkedMod.MODID)
@@ -77,6 +78,7 @@ public class XtonesReworkedMod {
   public XtonesReworkedMod(IEventBus modEventBus, ModContainer modContainer) {
     LOGGER.info("SETUP Xtones Reworked");
     modEventBus.addListener(this::commonSetup);
+    modEventBus.addListener(ScrollPayload::register);
 
 
     ModItems.register(modEventBus);
