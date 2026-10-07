@@ -2,7 +2,7 @@
 
 Decorative building blocks with **in-hand scrolling**, for **Minecraft 1.21.1 / NeoForge**.
 
-Development fork of [XTones Reworked](https://github.com/lays24mc/XTones-Reworked) that restores variant scrolling and adds switching between block families. No release of this fork has been published yet.
+A fork of [XTones Reworked](https://github.com/lays24mc/XTones-Reworked) that restores variant scrolling and adds switching between block families. Download the Minecraft 1.21.1 beta from [GitHub Releases](https://github.com/crococrystal/XTones/releases).
 
 ## Controls
 
@@ -33,6 +33,8 @@ Scrolling targets **1.21.1 only**. Other branches inherited from upstream retain
 ```
 
 The JAR is written to `build/libs`. Server GameTests check wrapping, count and component preservation, and rejected invalid requests. Test code is excluded from the mod JAR.
+
+The first beta passed the build and native server GameTest, covering all 546 registered blocks and 36 families. Physical mouse/key input and live multiplayer have not yet been checked in-game.
 
 For an in-game check, use `./gradlew runClient`, hold an XTones block and try both shortcuts in both directions. Also check an ordinary item, an inventory menu, and a multiplayer server with the fork installed.
 
